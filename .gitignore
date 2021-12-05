@@ -1,0 +1,7 @@
+**/.vs
+**/.v16
+**/bin
+**/obj
+**.suo
+Doxygen
+
