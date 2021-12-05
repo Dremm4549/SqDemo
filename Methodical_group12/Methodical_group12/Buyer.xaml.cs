@@ -21,6 +21,10 @@ namespace Methodical_group12
 
     public class BuyerObj : Employee
     {
+        public int BuyerID { set; get; }
+        public int NumberOfOrders { set; get; }
+        public int NumberOfContracts { set; get; }
+
 
         /**
         * FUNCTION      : public int InitiateContract()
