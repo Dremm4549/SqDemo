@@ -1,0 +1,6 @@
+This is the repository for the TMS system for Software Quality (SENG2020)'s Term Project.
+By Michael Dremo, Robert Socander, Max Pateman and Anish Bharatbhai Bhikadya
+
+- - - - - - VERSION HISTORY: - - - - - - 
+2021.12.05 : Initial push with files from previous milestone project.
+  - This version includes UI screens for all user types, save for Admins, and some basic logic implementation.
