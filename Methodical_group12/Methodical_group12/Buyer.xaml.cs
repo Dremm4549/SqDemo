@@ -36,11 +36,12 @@ namespace Methodical_group12
         *
         * RETURNS       : Contract
         */
-        public Contract InitiateContract()
+        public string InitiateContract()
         {
-            Contract cObj = new Contract();
+            string tmpStr = "";
 
-            return cObj;
+
+            return tmpStr;
         }
 
         /**
