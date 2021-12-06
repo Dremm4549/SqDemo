@@ -26,6 +26,8 @@ namespace Methodical_group12
         public int NumberOfOrders { set; get; }
         public int NumberOfContracts { set; get; }
 
+        string connStr = "server=159.89.117.198;user=DevOSHT;database=cmp;port=3306;password=Snodgr4ss!;";
+
 
         /**
         * FUNCTION      : public int InitiateContract()
@@ -40,7 +42,23 @@ namespace Methodical_group12
         public string InitiateContract()
         {
             string tmpStr = "";
+            MySqlConnection conn = new MySqlConnection(connStr);
 
+            if(conn == null)
+            {
+                //TODO Write an error Message
+            }
+
+            try
+            {
+                conn.Open();
+
+                //extract things like 
+            }
+            catch(Exception e)
+            {
+                // todo alert user of error
+            }
 
             return tmpStr;
         }
@@ -128,6 +146,10 @@ namespace Methodical_group12
 
         public Invoice GenerateInvoice()
         {
+            // Print origin & destination
+            //Quantity
+            // 
+
             Invoice inv = new Invoice();
 
             return inv;
