@@ -33,7 +33,30 @@ namespace Methodical_group12
             BuyerObj b = new BuyerObj();
 
             test.Text = b.InitiateContract();
-            
+
+            string password = psb_password.Password.ToString();
+            string userID = User.Text;
+
+            if (userID == "111111" && password == "1234")
+            {
+                Planner plannerWindow = new Planner();
+                plannerWindow.Show();
+                this.Close();
+
+            }
+            else if (userID == "222222" && password == "5678")
+            {
+                Buyer buyerWindow = new Buyer();
+                buyerWindow.Show();
+                this.Close();
+            }
+            else if (userID == "333333" && password == "9101")
+            {
+                Admin adminrWindow = new Admin();
+                adminrWindow.Show();
+                this.Close();
+            }
+
         }
     }
 }
