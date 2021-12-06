@@ -134,5 +134,10 @@ namespace Methodical_group12
         {
             InitializeComponent();
         }
+
+        private void btn_InitiateContract_Click(object sender, RoutedEventArgs e)
+        {
+            //this method will allow Buyers to select a contract from the marketplace and will place an order with that 'customer'.
+        }
     }
 }
