@@ -78,7 +78,8 @@ namespace Methodical_group12
 
         public void ConfirmOrder()
         {
-            
+            //ensure that all aspects of order are properly set and mark for follow-up
+
         }
 
         /**
@@ -93,6 +94,7 @@ namespace Methodical_group12
 
         public int CheckActiveOrders()
         {
+            
             int tmpActiveOrders = 0;
 
             return tmpActiveOrders;
@@ -122,16 +124,23 @@ namespace Methodical_group12
             //dropdown box will update when an initiated order has been chosen. 
 
             //foreach (carrier in selectedLocation) {
-                cbx_CarrierSelect.Items.Add("Carrier1");
+            cbx_CarrierSelect.Items.Add("carrier");
             //}
         }
 
         private void btn_Summary_Click(object sender, RoutedEventArgs e)
         {
+            string[] ordersList;
             //populate list with orders with the status of 'active'
+            // for (iterate through orders table) {
+            //  ordersList[0] = "Order is this | Status is this \n";
+            // }
+            //should show status screen with all active orders (listed) (orderStatus=active)
+        }
 
-            //should show status screen with all active orders (listed)
-
+        private void btn_Trips_Click(object sender, RoutedEventArgs e)
+        {
+            newPlanner.ConfirmOrder();
         }
     }
 
