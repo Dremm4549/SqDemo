@@ -153,5 +153,15 @@ namespace Methodical_group12
             
             InitializeComponent();
         }
+
+        private void btn_OpenLog_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void txt_Directory_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }
