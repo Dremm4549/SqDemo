@@ -11,7 +11,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using MySqlConnector;
 
 namespace Methodical_group12
 {
@@ -22,12 +21,6 @@ namespace Methodical_group12
 
     public class BuyerObj : Employee
     {
-        public int BuyerID { set; get; }
-        public int NumberOfOrders { set; get; }
-        public int NumberOfContracts { set; get; }
-
-        string connStr = "server=159.89.117.198;user=DevOSHT;database=cmp;port=3306;password=Snodgr4ss!;";
-
 
         /**
         * FUNCTION      : public int InitiateContract()
@@ -39,28 +32,11 @@ namespace Methodical_group12
         *
         * RETURNS       : Contract
         */
-        public string InitiateContract()
+        public Contract InitiateContract()
         {
-            string tmpStr = "";
-            MySqlConnection conn = new MySqlConnection(connStr);
+            Contract cObj = new Contract();
 
-            if(conn == null)
-            {
-                //TODO Write an error Message
-            }
-
-            try
-            {
-                conn.Open();
-
-                //extract things like 
-            }
-            catch(Exception e)
-            {
-                // todo alert user of error
-            }
-
-            return tmpStr;
+            return cObj;
         }
 
         /**
@@ -146,10 +122,6 @@ namespace Methodical_group12
 
         public Invoice GenerateInvoice()
         {
-            // Print origin & destination
-            //Quantity
-            // 
-
             Invoice inv = new Invoice();
 
             return inv;
@@ -161,6 +133,11 @@ namespace Methodical_group12
         public Buyer()
         {
             InitializeComponent();
+        }
+
+        internal void Open()
+        {
+            
         }
     }
 }

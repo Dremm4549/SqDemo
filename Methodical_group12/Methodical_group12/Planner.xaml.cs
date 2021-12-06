@@ -101,6 +101,11 @@ namespace Methodical_group12
         {
             InitializeComponent();
         }
+
+        internal void Open()
+        {
+            
+        }
     }
 
 }

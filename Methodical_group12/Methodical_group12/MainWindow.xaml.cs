@@ -27,9 +27,28 @@ namespace Methodical_group12
 
         private void btn_Confirm_Click(object sender, RoutedEventArgs e)
         {
-            AdminObj a = new AdminObj();
-            a.AlterConnStr(User.Text, test.Text);
-            a.GetConnInfo();
+            string password = psb_password.Password.ToString();
+            string userID = txb_userID.Text;
+
+            if (userID == "111111" && password == "1234")
+            {
+                Planner plannerWindow = new Planner();
+                plannerWindow.Show();
+                this.Close();
+
+            }
+            else if (userID == "222222" && password == "5678") 
+            {
+                Buyer buyerWindow = new Buyer();
+                buyerWindow.Show();
+                this.Close();
+            }
+            else if (userID == "333333" && password == "9101")
+            {
+                Admin adminrWindow = new Admin();
+                adminrWindow.Show();
+                this.Close();
+            }
         }
     }
 }
