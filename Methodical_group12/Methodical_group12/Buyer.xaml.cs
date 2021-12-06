@@ -92,8 +92,6 @@ namespace Methodical_group12
                 int generatedContract = rnd.Next(0, contractList.Count());
                 tmpStr = contractList[generatedContract].Client_Name + "," + contractList[generatedContract].Quantity + ","
                     + contractList[generatedContract].Origin + "," + contractList[generatedContract].Destination;
-
-
             }
             catch(Exception e)
             {
