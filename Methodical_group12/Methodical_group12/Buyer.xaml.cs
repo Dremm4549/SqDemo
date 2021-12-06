@@ -42,6 +42,7 @@ namespace Methodical_group12
         public string InitiateContract()
         {
             string tmpStr = "";
+            string name = "";
             MySqlConnection conn = new MySqlConnection(connStr);
 
             if(conn == null)
@@ -57,17 +58,17 @@ namespace Methodical_group12
                 MySqlCommand cmd = conn.CreateCommand();
                 cmd.CommandText = "SELECT Client_Name FROM cmp.Contract;";
                 conn.Open();
+                List<string> contractList = new List<string>();
 
                 using(var reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        string name = reader.GetString(0);
-                        tmpStr = name;
-                        break;
+                        name += reader.GetString(0) + "\n";
+                        contractList.Add(name);
                     }
                 }
-                
+                tmpStr = name;
                 
             }
             catch(Exception e)
