@@ -33,6 +33,7 @@ namespace Methodical_group12
             BuyerObj b = new BuyerObj();
 
             test.Text = b.InitiateContract();
+            
         }
     }
 }
