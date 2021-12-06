@@ -27,7 +27,13 @@ namespace Methodical_group12
 
         private void btn_Confirm_Click(object sender, RoutedEventArgs e)
         {
- 
+            //AdminObj a = new AdminObj();
+            //a.AlterConnStr(User.Text, test.Text);
+            //a.GetConnInfo();
+            BuyerObj b = new BuyerObj();
+
+            test.Text = b.InitiateContract();
+            
         }
     }
 }

@@ -15,9 +15,17 @@ namespace Methodical_group12
     public class Contract
     {
         public int ContractID { set; get; }
-        public string BuyerSignature { set; get; }
-        public string CustomerSignature { set; get; }
+        public string Client_Name { set; get; }
         public int OrderId { set; get; }
+        public string Destination { set; get; }
+        public string Origin { set; get; }
+        public int JobType { set; get; }
+        public int Quantity { set; get; }
+        public int VanType { set; get; }
+
+
+
+
 
         /**
         * FUNCTION      : public string ContractAgreement(int contractID, string buyerSignature, string customerSignature, int orderID)

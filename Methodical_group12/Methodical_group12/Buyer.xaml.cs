@@ -25,6 +25,7 @@ namespace Methodical_group12
         public int BuyerID { set; get; }
         public int NumberOfOrders { set; get; }
         public int NumberOfContracts { set; get; }
+        List<Contract> contractList = new List<Contract>();
 
         string connStr = "server=159.89.117.198;user=DevOSHT;database=cmp;port=3306;password=Snodgr4ss!;";
 
@@ -42,6 +43,11 @@ namespace Methodical_group12
         public string InitiateContract()
         {
             string tmpStr = "";
+            int tmpQuantity;
+            string tmpOrigin;
+            string tmpDestination;
+            int tmpJobType;
+            int tmpVanType;
             string name = "";
             MySqlConnection conn = new MySqlConnection(connStr);
 
@@ -56,20 +62,38 @@ namespace Methodical_group12
                 // Once the row is selected extract things like client name quantity origin destination van type
                 // into a new string which will be inserted into the contract database inside of tms
                 MySqlCommand cmd = conn.CreateCommand();
-                cmd.CommandText = "SELECT Client_Name FROM cmp.Contract;";
+                cmd.CommandText = "SELECT * FROM cmp.Contract;";
                 conn.Open();
-                List<string> contractList = new List<string>();
+                
 
                 using(var reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        name += reader.GetString(0) + "\n";
-                        contractList.Add(name);
+                        name = reader.GetString("Client_Name").ToString();
+                        tmpQuantity = reader.GetInt32("Quantity");
+                        tmpJobType = reader.GetInt32("Job_Type");
+                        tmpOrigin = reader.GetString("Origin").ToString();
+                        tmpDestination = reader.GetString("Destination").ToString();
+                        tmpVanType = reader.GetInt32("Van_Type");
+                        Contract c = new Contract();
+
+                        c.Client_Name = name;
+                        c.Quantity = tmpQuantity;
+                        c.JobType = tmpJobType;
+                        c.Origin = tmpOrigin;
+                        c.Destination = tmpDestination;
+                        c.VanType = tmpVanType;
+                        contractList.Add(c);
                     }
                 }
-                tmpStr = name;
-                
+                Random rnd = new Random();
+
+                int generatedContract = rnd.Next(0, contractList.Count());
+                tmpStr = contractList[generatedContract].Client_Name + "," + contractList[generatedContract].Quantity + ","
+                    + contractList[generatedContract].Origin + "," + contractList[generatedContract].Destination;
+
+
             }
             catch(Exception e)
             {
