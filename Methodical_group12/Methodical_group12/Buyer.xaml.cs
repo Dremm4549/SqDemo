@@ -50,10 +50,25 @@ namespace Methodical_group12
             }
 
             try
-            {
+            {             
+                //TODO: create a mysql command to select a row at random in the contract market place table 
+                // Once the row is selected extract things like client name quantity origin destination van type
+                // into a new string which will be inserted into the contract database inside of tms
+                MySqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "SELECT Client_Name FROM cmp.Contract;";
                 conn.Open();
 
-                //extract things like 
+                using(var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string name = reader.GetString(0);
+                        tmpStr = name;
+                        break;
+                    }
+                }
+                
+                
             }
             catch(Exception e)
             {
@@ -94,7 +109,11 @@ namespace Methodical_group12
 
         public Order InitiateNewOrder()
         {
+            // TODO: sql connects to the market place and will grab things like a client name quantity orgin,
+            // destination and the buyer will have to add things like date ordered was made and expected delivery
+            // date
             Order oObj = new Order();
+            
 
             return oObj;
         }
@@ -130,6 +149,7 @@ namespace Methodical_group12
         public string SelectOrderCities()
         {
             string tmpOrderCitites = "";
+            // TODO buyer may select relevant cities for the order if the city is in range.
 
             return tmpOrderCitites;
         }
