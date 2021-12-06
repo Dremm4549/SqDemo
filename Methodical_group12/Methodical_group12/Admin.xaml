@@ -60,7 +60,5 @@
         <Label x:Name="lbl_TMSData1" Content="TMS Data" Grid.Column="1" HorizontalAlignment="Left" Margin="58.8,10.2,0,0" Grid.Row="8" VerticalAlignment="Top" Width="143" Foreground="White" FontSize="20" Grid.RowSpan="2"/>
         <Label x:Name="lbl_Directory" Content="Directory" Grid.Column="3" HorizontalAlignment="Left" Margin="204.6,37.2,0,0" Grid.Row="10" VerticalAlignment="Top" Width="143" Foreground="White" FontSize="20" Grid.RowSpan="2" Grid.ColumnSpan="3" RenderTransformOrigin="0.531,0.77"/>
         <Label x:Name="lbl_TMS2" Content="TMS Data" Grid.Column="3" HorizontalAlignment="Left" Margin="204.6,25,0,0" Grid.Row="5" VerticalAlignment="Top" Width="143" Foreground="White" FontSize="20" Grid.RowSpan="2" Grid.ColumnSpan="3" RenderTransformOrigin="0.531,0.77"/>
-
-
     </Grid>
 </Window>
