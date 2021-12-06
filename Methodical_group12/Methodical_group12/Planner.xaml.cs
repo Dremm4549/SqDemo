@@ -106,6 +106,7 @@ namespace Methodical_group12
         public Planner()
         {
             InitializeComponent();
+            
         }
 
         private void btn_GenerateOrder_Click(object sender, RoutedEventArgs e)
