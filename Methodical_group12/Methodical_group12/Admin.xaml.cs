@@ -108,7 +108,6 @@ namespace Methodical_group12
         {
             //Read the text inside the conneciton file 
             string tmpStr;
-            string newConnStr = "";
             tmpStr = File.ReadAllText(TMSDataBaseConnectionFilepath);
             char[] unwatedChar = { '\n', ':', '\r' };
             string[] parsedData = tmpStr.Split(unwatedChar, StringSplitOptions.RemoveEmptyEntries);
