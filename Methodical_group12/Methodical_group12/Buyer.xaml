@@ -48,7 +48,7 @@
                 </LinearGradientBrush>
             </Label.Foreground>
         </Label>
-        <Button x:Name="btn_InitiateContract" Grid.Row="3" Grid.Column="1"  Content="Initiate Contract" TabIndex="2" Margin="0,0,0,0" IsEnabled="True" Background="#FF2B486A" Foreground="White" FontSize="20"  />
+        <Button x:Name="btn_InitiateContract" Grid.Row="3" Grid.Column="1"  Content="Initiate Contract" TabIndex="2" Margin="0,0,0,0" IsEnabled="True" Background="#FF2B486A" Foreground="White" FontSize="20" Click="btn_InitiateContract_Click"  />
         <Button x:Name="btn_FindCustomer" Grid.Row="5" Grid.Column="1"  Content="Find Customer" TabIndex="2" Margin="0,0,0,0" IsEnabled="True" Background="#FF2B486A" Foreground="White" FontSize="20"  />
         <Button x:Name="btn_InitiateOrder" Grid.Row="7" Grid.Column="1"  Content="Initiate Order" TabIndex="2" Margin="0,0,0,0" IsEnabled="True" Background="#FF2B486A" Foreground="White" FontSize="20"  />
         <Button x:Name="btn_Invoice" Grid.Row="9" Grid.Column="1"  Content="Invoice" TabIndex="2" Margin="0,0,0,0" IsEnabled="True" Background="#FF2B486A" Foreground="White" FontSize="20"  />

@@ -40,9 +40,12 @@ namespace Methodical_group12
         * RETURNS       : NONE
         */
 
-        public string SelectCarrier()
+        public string CarrierAssign (string tempCarrier)
         {
-            string tmpCarrier = "";
+            //parameter should come from cbx_carrierSelect
+            string tmpCarrier = tempCarrier;
+            //if Carrier exists, 
+            
 
             return tmpCarrier;
         }
@@ -75,7 +78,8 @@ namespace Methodical_group12
 
         public void ConfirmOrder()
         {
-            
+            //ensure that all aspects of order are properly set and mark for follow-up
+
         }
 
         /**
@@ -90,6 +94,7 @@ namespace Methodical_group12
 
         public int CheckActiveOrders()
         {
+            
             int tmpActiveOrders = 0;
 
             return tmpActiveOrders;
@@ -97,9 +102,45 @@ namespace Methodical_group12
     }
     public partial class Planner : Window
     {
+        PlannerObj newPlanner = new PlannerObj();
         public Planner()
         {
             InitializeComponent();
+        }
+
+        private void btn_GenerateOrder_Click(object sender, RoutedEventArgs e)
+        {
+            //refresh list of orders
+        }
+
+        private void btn_SelectCarrier_Click(object sender, RoutedEventArgs e)
+        {
+            //clicking the 'select Carrier' button will check the textbox for a valid input and assign carriers.
+            newPlanner.CarrierAssign(txb_carrier.Text);
+        }
+
+        private void lbx_Orders_TargetUpdated(object sender, DataTransferEventArgs e)
+        {
+            //dropdown box will update when an initiated order has been chosen. 
+
+            //foreach (carrier in selectedLocation) {
+            cbx_CarrierSelect.Items.Add("carrier");
+            //}
+        }
+
+        private void btn_Summary_Click(object sender, RoutedEventArgs e)
+        {
+            string[] ordersList;
+            //populate list with orders with the status of 'active'
+            // for (iterate through orders table) {
+            //  ordersList[0] = "Order is this | Status is this \n";
+            // }
+            //should show status screen with all active orders (listed) (orderStatus=active)
+        }
+
+        private void btn_Trips_Click(object sender, RoutedEventArgs e)
+        {
+            newPlanner.ConfirmOrder();
         }
     }
 

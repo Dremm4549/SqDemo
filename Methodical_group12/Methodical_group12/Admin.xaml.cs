@@ -36,7 +36,7 @@ namespace Methodical_group12
         /**
         * FUNCTION      : public string GetLogFiles(string selectedFile)
         *
-        * DESCRIPTION   : returns th contents of an agreement within a contract
+        * DESCRIPTION   : returns the contents of an agreement within a contract
         *                 
         * PARAMETERS    : string selectedFile
         *
@@ -44,6 +44,7 @@ namespace Methodical_group12
         */
         public string GetLogFiles(string selectedFile)
         {
+            
             return selectedFile;
         }
 
@@ -92,6 +93,8 @@ namespace Methodical_group12
         public void AlterInformation(string file)
         {
             //alters information in a log file
+            //will take file, open and display through UI(?)
+            
         }
 
         /**
@@ -140,11 +143,25 @@ namespace Methodical_group12
             }
         }
     }
+
+
+
     public partial class Admin : Window
     {    
         public Admin()
         {
+            
             InitializeComponent();
+        }
+
+        private void btn_OpenLog_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void txt_Directory_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }
