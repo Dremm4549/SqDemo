@@ -32,31 +32,36 @@ namespace Methodical_group12
             //a.GetConnInfo();
             BuyerObj b = new BuyerObj();
 
-            test.Text = b.InitiateContract();
+            //test.Text = b.InitiateContract();
 
             string password = psb_password.Password.ToString();
             string userID = User.Text;
+            SignIn(userID, password);
+            
 
-            if (userID == "111111" && password == "1234")
+        }
+
+        void SignIn(string user, string pass)
+        {
+            if (user == "pDixon" && pass == "1234")
             {
                 Planner plannerWindow = new Planner();
                 plannerWindow.Show();
                 this.Close();
 
             }
-            else if (userID == "222222" && password == "5678")
+            else if (user == "bSally" && pass == "5678")
             {
                 Buyer buyerWindow = new Buyer();
                 buyerWindow.Show();
                 this.Close();
             }
-            else if (userID == "333333" && password == "9101")
+            else if (user == "aBobby" && pass == "9101")
             {
                 Admin adminrWindow = new Admin();
                 adminrWindow.Show();
                 this.Close();
             }
-
         }
     }
 }
