@@ -5,8 +5,37 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Methodical_group12"
         mc:Ignorable="d"
-        Title="OrderSummary" Height="450" Width="655.701" ResizeMode="NoResize">
-    <Grid Margin="0,0,2,0">
-        
+        Title="OrderSummary" Height="666.897" Width="542.266" ResizeMode="NoResize">
+    <Grid Margin="0,0,-6.6,0.2">
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="Black" Offset="0"/>
+                <GradientStop Color="#FF64CDEC" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="15"/>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition Width="15"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBox Name ="tbx_orders" Background="#FF2B486A" Foreground="White" Grid.ColumnSpan="4" Grid.Column="1" HorizontalAlignment="Left" Height="458" Margin="92.8,28.6,0,0" Grid.Row="1" Grid.RowSpan="7" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="334"/>
+        <Button Name ="btn_ALLTime" Background="#FF2B486A" Foreground="White" Content="All Time" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="92.8,4.6,0,0" VerticalAlignment="Top" Width="92" Grid.ColumnSpan="2" Grid.Row="1" Click="btn_ALLTime_Click"/>
+        <Button Name="btn_LastTwoWeek" Background="#FF2B486A" Foreground="White" Content="Past 2 Weeks" Grid.Column="2" HorizontalAlignment="Left" Margin="52.8,4.6,0,0" Grid.Row="1" VerticalAlignment="Top" Width="92" Grid.ColumnSpan="2" Height="24" Click="btn_LastTwoWeek_Click"/>
+        <Button Name="btn_Exit" Background="#FF2B486A" Foreground="White" Grid.ColumnSpan="2" Content="Exit" Grid.Column="3" HorizontalAlignment="Left" Margin="117.8,9.8,0,0" Grid.Row="8" VerticalAlignment="Top" Width="114" Height="40" Click="btn_Exit_Click"/>
+
     </Grid>
 </Window>
