@@ -18,7 +18,7 @@ namespace Methodical_group12
         public int orderID { set; get; }
         string OrderStatus { set; get; }
 
-        /**
+        /*
         * FUNCTION      : public string CurrentOrderStatus()
         *
         * DESCRIPTION   : Returns the order status of the order object

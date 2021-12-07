@@ -50,7 +50,7 @@
         </Label>
         <Button x:Name="btn_InitiateContract" Grid.Row="3" Grid.Column="1"  Content="Initiate Contract" TabIndex="2" Margin="0,0,0,0" IsEnabled="True" Background="#FF2B486A" Foreground="White" FontSize="20" Click="btn_InitiateContract_Click"  />
         <Button x:Name="btn_FindCustomer" Grid.Row="5" Grid.Column="1"  Content="Find Customer" TabIndex="2" Margin="0,0,0,0" IsEnabled="True" Background="#FF2B486A" Foreground="White" FontSize="20"  />
-        <Button x:Name="btn_InitiateOrder" Grid.Row="7" Grid.Column="1"  Content="Initiate Order" TabIndex="2" Margin="0,0,0,0" IsEnabled="True" Background="#FF2B486A" Foreground="White" FontSize="20"  />
+        <Button x:Name="btn_InitiateOrder" Grid.Row="7" Grid.Column="1"  Content="Initiate Order" TabIndex="2" Margin="0,0,0,0" IsEnabled="True" Background="#FF2B486A" Foreground="White" FontSize="20" Click="btn_InitiateOrder_Click"  />
         <Button x:Name="btn_Invoice" Grid.Row="9" Grid.Column="1"  Content="Invoice" TabIndex="2" Margin="0,0,0,0" IsEnabled="True" Background="#FF2B486A" Foreground="White" FontSize="20"  />
 
         <Label x:Name="lbl_customer" Content="Customer Name: " Grid.Row="3" Grid.Column="3" Foreground="White" FontFamily="Segoe UI" FontSize="20" Margin="15.8,13,5.4,13.2" Height="37" Grid.ColumnSpan="2" Grid.RowSpan="2"/>

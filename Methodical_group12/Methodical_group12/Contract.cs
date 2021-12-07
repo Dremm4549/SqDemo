@@ -23,10 +23,6 @@ namespace Methodical_group12
         public int Quantity { set; get; }
         public int VanType { set; get; }
 
-
-
-
-
         /**
         * FUNCTION      : public string ContractAgreement(int contractID, string buyerSignature, string customerSignature, int orderID)
         *

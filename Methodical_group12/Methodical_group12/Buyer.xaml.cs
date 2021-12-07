@@ -27,20 +27,21 @@ namespace Methodical_group12
         public int NumberOfContracts { set; get; }
         List<Contract> contractList = new List<Contract>();
 
-        string connStr = "server=159.89.117.198;user=DevOSHT;database=cmp;port=3306;password=Snodgr4ss!;";
+        public string marketPlaceConnStr = "server=159.89.117.198;user=DevOSHT;database=cmp;port=3306;password=Snodgr4ss!;";
 
 
         /**
         * FUNCTION      : public int InitiateContract()
         *
-        * DESCRIPTION   : This function will generate a Contract Object that will
-        *                 create a contract object.
+        * DESCRIPTION   : This function will be used to get infromation from the marketplace randomly
+        *                 since the marketplace refreshes every 10 seconds it will grab a random row
+        *                 and concanate it into one string
         * 
         * PARAMETERS    : NONE
         *
         * RETURNS       : Contract
         */
-        public string InitiateContract()
+        public string GetMarketPlaceInfo()
         {
             string tmpStr = "";
             int tmpQuantity;
@@ -49,7 +50,7 @@ namespace Methodical_group12
             int tmpJobType;
             int tmpVanType;
             string name = "";
-            MySqlConnection conn = new MySqlConnection(connStr);
+            MySqlConnection conn = new MySqlConnection(marketPlaceConnStr);
 
             if(conn == null)
             {
@@ -87,14 +88,17 @@ namespace Methodical_group12
                         contractList.Add(c);
                     }
                 }
+                conn.Close();
+                //Generate a number based on the amount of entries selected from mysql
                 Random rnd = new Random();
-
                 int generatedContract = rnd.Next(0, contractList.Count());
+
                 tmpStr = contractList[generatedContract].Client_Name + "," + contractList[generatedContract].Quantity + ","
-                    + contractList[generatedContract].Origin + "," + contractList[generatedContract].Destination;
+                    + contractList[generatedContract].Origin + "," + contractList[generatedContract].Destination + "," + contractList[generatedContract].JobType;      
             }
             catch(Exception e)
             {
+                tmpStr = e.Message;
                 // todo alert user of error
             }
 
@@ -135,6 +139,9 @@ namespace Methodical_group12
             // TODO: sql connects to the market place and will grab things like a client name quantity orgin,
             // destination and the buyer will have to add things like date ordered was made and expected delivery
             // date
+            // Similar to the contract we will choose a random row from the table 
+            // Once generated the buyer will have to pass certain details like the date the order was made
+            // It will be then added to the ordered database and the orders that employee has made will increase
             Order oObj = new Order();
             
 
@@ -201,6 +208,8 @@ namespace Methodical_group12
 
     public partial class Buyer : Window
     {
+        public string ContractStr { set; get; }
+        BuyerObj buyer = new BuyerObj();
         public Buyer()
         {
             InitializeComponent();
@@ -209,7 +218,67 @@ namespace Methodical_group12
         private void btn_InitiateContract_Click(object sender, RoutedEventArgs e)
         {
             //this method will allow Buyers to select a contract from the marketplace and will place an order with that 'customer'.
-
+            ContractStr = buyer.GetMarketPlaceInfo();
+            string retStr = InsertToContracts(ContractStr, buyer.marketPlaceConnStr);
         }
+       
+        string InsertToContracts(string data, string connStr)
+        {
+            string returnStr = "";
+            string[] parsedData;
+            char[] unwanteChar = { ',' };
+            parsedData = data.Split(unwanteChar, StringSplitOptions.RemoveEmptyEntries);
+
+            MySqlConnection conn = new MySqlConnection(connStr);
+
+            if (conn == null)
+            {
+                //TODO Write an error Message
+            }
+
+            try
+            {
+                MySqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "Insert INTO contracts (ClientName,Quantity,Origin,Destination,Job_Type) values('" + parsedData[0] + "','" + parsedData[1] + "','" + parsedData[2] + "','" + parsedData[3] + "','" + parsedData[4] + "')";
+                conn.Open();
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    returnStr = "You have successfully created a contract";
+                }
+                catch (Exception e)
+                {
+                    returnStr = "There has been an error trying to insert the contract. " + e.Message;
+                }
+            }
+            catch (Exception msg)
+            {
+                returnStr = msg.Message;
+            }
+
+            return returnStr;
+        }
+
+        private void btn_InitiateOrder_Click(object sender, RoutedEventArgs e)
+        {
+            string RandomRow = buyer.GetMarketPlaceInfo();
+            string retStr = CreateOrder(RandomRow, buyer.connStr);
+        }
+
+        string CreateOrder(string data, string connStr)
+        {
+            string returnStr = "";
+            string[] parsedData;
+            char[] unwanteChar = { ',' };
+            parsedData = data.Split(unwanteChar, StringSplitOptions.RemoveEmptyEntries);
+
+            return returnStr;
+        }
+
+        
     }
+
+
 }
+
+
