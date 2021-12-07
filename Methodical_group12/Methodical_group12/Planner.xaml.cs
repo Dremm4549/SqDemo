@@ -264,6 +264,13 @@ namespace Methodical_group12
 
             return retString;
         }
+
+        private void lbx_Orders_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            MessageBox.Show("HELLO");
+            // When the planner selects an item check if its inactive if so display allow them
+            // To modify the carrier and status
+        }
     }
 
 }

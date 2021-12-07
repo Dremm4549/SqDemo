@@ -62,7 +62,7 @@
         <Label x:Name="lbl_Order" Content="Active Orders : " Grid.Row="1" Grid.Column="7" Foreground="White" FontFamily="Segoe UI" FontSize="20" Margin="0,12,6,6" Height="37"/>
         <TextBox x:Name="txb_trips" Grid.ColumnSpan="3" Grid.Column="1" Grid.Row="6" TabIndex="6" HorizontalAlignment="Left" Height="45"  TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="305"  Background="#FF2B486A" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFFFFEFE" FontSize="20"/>
 
-        <ListBox x:Name="lbx_Orders" Grid.Row="2" Grid.Column="7" Grid.RowSpan="11" Grid.ColumnSpan="2" Background="#FF2B486A" Foreground="White" TargetUpdated="lbx_Orders_TargetUpdated">
+        <ListBox x:Name="lbx_Orders" Grid.Row="2" Grid.Column="7" Grid.RowSpan="11" Grid.ColumnSpan="2" Background="#FF2B486A" Foreground="White" TargetUpdated="lbx_Orders_TargetUpdated"  SelectionChanged="lbx_Orders_SelectionChanged">
             
             
         </ListBox>
