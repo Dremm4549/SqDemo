@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,7 +29,22 @@ namespace Methodical_group12
 
     public class PlannerObj : Employee
     {
+        public string ConnStr = "server=localhost;port=3306;user=root;password=C4kd-s3d3=#ws090;database=omnicorp;";
+        MySqlConnection newConnection = new MySqlConnection();
         public int orderID { set; get; }
+
+        string OrderDate;
+        string Origin;
+        string ClientName;
+        string EstDeliveryDate;
+        string Carrier;
+        string Status;
+        int Quantity;
+
+        
+        
+
+        
 
         /**
         * FUNCTION      : public string SelectCarrier()
@@ -79,7 +95,35 @@ namespace Methodical_group12
         public void ConfirmOrder()
         {
             //ensure that all aspects of order are properly set and mark for follow-up
+            if (ConnStr == null)
+            {
 
+            }
+            else
+            {
+                MySqlCommand cmd = newConnection.CreateCommand();
+
+                //may need to specify ID for Contract.
+                cmd.CommandText = "SELECT * FROM cmp.orders;";
+                newConnection.Open();
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        //take info from contract table.
+                        orderID = reader.GetInt32("OrderNumber");
+                        OrderDate = reader.GetString("DateOfOrder");
+                        Origin = reader.GetString("Origin");
+                        ClientName = reader.GetString("ClientName");
+                        EstDeliveryDate = reader.GetString("estimatedDeliveryDate");
+                        Carrier = reader.GetString("Carrier");
+                        Status = reader.GetString("OrderStatus");
+                        Quantity = reader.GetInt32("Quantity");
+
+                    }
+                }
+            }
         }
 
         /**
@@ -106,12 +150,13 @@ namespace Methodical_group12
         public Planner()
         {
             InitializeComponent();
-            
+            //newPlanner.newConnection.Open(ConnStr);
         }
 
         private void btn_GenerateOrder_Click(object sender, RoutedEventArgs e)
         {
             //refresh list of orders
+
         }
 
         private void btn_SelectCarrier_Click(object sender, RoutedEventArgs e)
