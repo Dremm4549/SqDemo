@@ -219,11 +219,11 @@ namespace Methodical_group12
                 try
                 {
                     cmd.ExecuteNonQuery();
-                    returnStr = "You have successfully created a contract";
+                    returnStr = "Success: A contract has been inserted into the tms database";
                 }
                 catch (Exception e)
                 {
-                    returnStr = "There has been an error trying to insert the contract. " + e.Message;
+                    returnStr = "Error: There has been an error trying to insert the contract. " + e.Message;
                 }
             }
             catch (Exception msg)
@@ -266,11 +266,11 @@ namespace Methodical_group12
                 try
                 {
                     cmd.ExecuteNonQuery();
-                    returnStr = "You have successfully created a contract";
+                    returnStr = "Success: An order has been added to the data base";
                 }
                 catch (Exception e)
                 {
-                    returnStr = "There has been an error trying to insert the contract. " + e.Message;
+                    returnStr = "Error: There has been an error trying to insert the contract. " + e.Message;
                 }
             }
             catch (Exception msg)
