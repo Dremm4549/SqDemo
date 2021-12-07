@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Methodical_group12"
         mc:Ignorable="d"
-        Title="Buyer" Height="381" Width="744" WindowState="Maximized">
+        Title="Buyer" Height="381" Width="744" ResizeMode="NoResize">
     <Grid Height="407" VerticalAlignment="Top">
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
