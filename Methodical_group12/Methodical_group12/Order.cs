@@ -16,7 +16,10 @@ namespace Methodical_group12
     public class Order
     {
         public int orderID { set; get; }
-        string OrderStatus { set; get; }
+        public string OrderStatus { set; get; }
+        public string ClientName { set; get; }
+        public string  Carrier { set; get; }
+
 
         /*
         * FUNCTION      : public string CurrentOrderStatus()

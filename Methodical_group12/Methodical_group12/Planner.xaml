@@ -63,8 +63,8 @@
         <TextBox x:Name="txb_trips" Grid.ColumnSpan="3" Grid.Column="1" Grid.Row="6" TabIndex="6" HorizontalAlignment="Left" Height="45"  TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="305"  Background="#FF2B486A" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFFFFEFE" FontSize="20"/>
 
         <ListBox x:Name="lbx_Orders" Grid.Row="2" Grid.Column="7" Grid.RowSpan="11" Grid.ColumnSpan="2" Background="#FF2B486A" Foreground="White" TargetUpdated="lbx_Orders_TargetUpdated">
-            <ListBoxItem Content="Order1"/>
-            <ListBoxItem/>
+            
+            
         </ListBox>
         <ComboBox x:Name="cbx_CarrierSelect" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Left" Margin="2,0,0,0" Grid.Row="4" VerticalAlignment="Top" Width="303" Height="33"/>
     </Grid>

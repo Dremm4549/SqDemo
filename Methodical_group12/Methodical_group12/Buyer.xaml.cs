@@ -207,7 +207,7 @@ namespace Methodical_group12
             string[] parsedData;
             char[] unwanteChar = { ',' };
             parsedData = data.Split(unwanteChar, StringSplitOptions.RemoveEmptyEntries);
-            MySqlConnection conn = new MySqlConnection(buyer.econnStr);
+            MySqlConnection conn = new MySqlConnection(buyer.OmniCorpStr);
 
             if (conn == null)
             {
@@ -263,7 +263,7 @@ namespace Methodical_group12
             try
             {
                 MySqlCommand cmd = conn.CreateCommand();
-                cmd.CommandText = "Insert INTO orders (ClientName,Quantity,Origin,Destination,DateOfOrder,estimatedDeliveryDate) values('" + parsedData[0] + "','" + parsedData[1] + "','" + parsedData[3] + "','" + parsedData[4] + "','" + startDate + "','" + endDate +  "')";
+                cmd.CommandText = "Insert INTO orders (ClientName,Quantity,Origin,Destination,DateOfOrder,estimatedDeliveryDate,OrderStatus,Carrier) values('" + parsedData[0] + "','" + parsedData[1] + "','" + parsedData[3] + "','" + parsedData[4] + "','" + startDate + "','" + endDate + "','" + "Inactive" + "','" + "Undefined" + "')";
                 conn.Open();
                 try
                 {
@@ -272,7 +272,7 @@ namespace Methodical_group12
                 }
                 catch (Exception e)
                 {
-                    returnStr = "Error: There has been an error trying to insert the contract. " + e.Message;
+                    returnStr = "Error: There has been an error trying to insert the Orders table. " + e.Message;
                 }
             }
             catch (Exception msg)
@@ -288,8 +288,12 @@ namespace Methodical_group12
         {
             string tmpStartDate = txb_StartDate.Text;
             string tmpEndDate = txb_EndDate.Text;
+            //Ensure the date is valid
+            
             string RandomRow = buyer.GetMarketPlaceInfo();
-            string retStr = CreateOrder(RandomRow, buyer.econnStr, tmpStartDate, tmpEndDate);
+            string retStr = CreateOrder(RandomRow, buyer.OmniCorpStr, tmpStartDate, tmpEndDate);
+            //take the string and if the order was successful alert the user with a message box
+            MessageBox.Show(retStr);
         }
     }
 
