@@ -143,6 +143,9 @@ namespace Methodical_group12
     {
         PlannerObj newPlanner = new PlannerObj();
         List<Order> o = new List<Order>();
+        Order tmpOrder = new Order();
+        string connStr;
+
         public Planner()
         {
             InitializeComponent();
@@ -151,15 +154,16 @@ namespace Methodical_group12
         private void btn_GenerateOrder_Click(object sender, RoutedEventArgs e)
         {
             //refresh list of orders
+
             //ensure that all aspects of order are properly set and mark for follow-up
             string orders = GetInactiveOrders(newPlanner.OmniCorpStr);
             string commandReturn = orders.Remove(orders.IndexOf(":"));
-            
-            if(commandReturn == "Success")
+
+            if (commandReturn == "Success")
             {
                 //Iterate through the list appending to the box
                 string clientInfo = "";
-                foreach(Order order in o)
+                foreach (Order order in o)
                 {
                     clientInfo = order.orderID + "," + order.ClientName + "," + order.OrderStatus;
                     lbx_Orders.Items.Add(clientInfo);
@@ -185,9 +189,9 @@ namespace Methodical_group12
         {
             //dropdown box will update when an initiated order has been chosen. 
 
-            //foreach (carrier in selectedLocation) {
+
             cbx_CarrierSelect.Items.Add("carrier");
-            //}
+
         }
 
         private void btn_Summary_Click(object sender, RoutedEventArgs e)
@@ -205,7 +209,7 @@ namespace Methodical_group12
 
         private void btn_Trips_Click(object sender, RoutedEventArgs e)
         {
-            newPlanner.ConfirmOrder();
+            
         }
 
         private void ListBoxItem_GotFocus(object sender, RoutedEventArgs e)
@@ -213,25 +217,31 @@ namespace Methodical_group12
             // Output text box to set status of order
         }
 
-        public string GetInactiveOrders(string connStr)
+        public string GetInactiveOrders(string connectStr)
         {
+            connStr = connectStr;
+            MySqlConnection conn = new MySqlConnection(connStr);
             string retString = "";
             string tmpClientName = "";
             int tmpOrderID;
             string tmpStatus = "";
             string tmpCarrier = "";
 
-            MySqlConnection conn = new MySqlConnection(connStr);
+            string tmpOrderDate = "";
+            string tmpOrigin = "";
+            string tmpDestination = "";
+            string tmpEstDeliveryDate = "";
+
+
             if (conn == null)
             {
                 retString = "Error: There was an issue connecting to the database";
             }
             else
             {
-                
                 MySqlCommand cmd = conn.CreateCommand();
                 o.Clear();
-                //get any contract that has a NULL status (inactive).
+                //get any order that has a NULL status (inactive).
                 cmd.CommandText = "select * From omnicorp.orders where OrderStatus = 'inactive' and Carrier = 'Undefined';";
                 conn.Open();
                 try
@@ -247,25 +257,31 @@ namespace Methodical_group12
                             tmpOrderID = reader.GetInt32("OrderNumber");
                             tmpStatus = reader.GetString("OrderStatus").ToString();
                             tmpCarrier = reader.GetString("Carrier").ToString();
-                            Order tmpOrder = new Order();
+
+                            tmpOrderDate = reader.GetString("DateOfOrder").ToString();
+                            tmpOrigin = reader.GetString("Origin").ToString();
+                            tmpDestination = reader.GetString("Destination").ToString();
+                            tmpEstDeliveryDate = reader.GetString("estimatedDeliveryDate").ToString();
+
                             tmpOrder.orderID = tmpOrderID;
                             tmpOrder.OrderStatus = tmpStatus;
                             tmpOrder.ClientName = tmpClientName;
                             tmpOrder.Carrier = tmpCarrier;
+
+                            tmpOrder.OrderDate = tmpOrderDate;
+                            tmpOrder.Origin = tmpOrigin;
+                            tmpOrder.Destination = tmpDestination;
+                            tmpOrder.EstDeliveryDate = tmpEstDeliveryDate;
                             o.Add(tmpOrder);
                         }
                         retString = "Success: Orders Refreshed";
-
                     }
                 }
                 catch (Exception exp)
                 {
                     retString = "Error: " + exp.Message;
                 }
-                conn.Close();            
-                // compare to contracts and their available locations (same method.)
-
-                // This will allow the drop-down list to be appended to.
+                conn.Close();
             }
 
             return retString;
@@ -273,10 +289,35 @@ namespace Methodical_group12
 
         private void lbx_Orders_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            MessageBox.Show("HELLO");
+            MySqlConnection conn = new MySqlConnection(connStr);
             // When the planner selects an item check if its inactive if so display allow them
-            // To modify the carrier and status
+
+            // To modify the carrier
+            MySqlCommand cmd = conn.CreateCommand();
+            //get any contract that has a NULL status (inactive).
+            cmd.CommandText = "select DISTINCT CarrierName From omnicorp.orders where OrderStatus is '"+ tmpOrder.Origin +"';";
+            conn.Open();
+            List<string> carrierList = new List<string>();
+            try
+            {
+                //open connection and read the 
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void btn_Confirm_Click(object sender, RoutedEventArgs e)
+        {
+            newPlanner.ConfirmOrder();
         }
     }
-
 }
