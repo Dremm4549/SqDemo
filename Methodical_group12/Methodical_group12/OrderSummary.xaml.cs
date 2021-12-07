@@ -23,5 +23,22 @@ namespace Methodical_group12
         {
             InitializeComponent();
         }
+
+        private void btn_Exit_Click(object sender, RoutedEventArgs e)
+        {
+            Planner backtoPlanner = new Planner();
+            backtoPlanner.Show();
+            this.Close();
+        }
+
+        private void btn_ALLTime_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_LastTwoWeek_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
