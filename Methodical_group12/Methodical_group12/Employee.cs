@@ -16,7 +16,7 @@ namespace Methodical_group12
         public string Password { set; get; }
         public string Department { set; get; }
 
-        public string econnStr = "server=localhost;user=root;database=omnicorp;port=3306;password=C4kd-s3d3-#ws090;";
+        public string OmniCorpStr = "server=localhost;user=root;database=omnicorp;port=3306;password=C4kd-s3d3-#ws090;";
 
     }
 }
