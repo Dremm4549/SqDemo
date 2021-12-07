@@ -55,6 +55,7 @@ namespace Methodical_group12
             if(conn == null)
             {
                 //TODO Write an error Message
+                tmpStr = "Error: There is an issue connecting to the database";
             }
 
             try
@@ -295,8 +296,9 @@ namespace Methodical_group12
             //take the string and if the order was successful alert the user with a message box
             MessageBox.Show(retStr);
         }
-    }
 
+        
+    }
 
 }
 
