@@ -174,7 +174,13 @@ namespace Methodical_group12
         private void btn_SelectCarrier_Click(object sender, RoutedEventArgs e)
         {
             //clicking the 'select Carrier' button will check the textbox for a valid input and assign carriers.
-            
+            //if ()
+            //{
+
+            //} else
+            //{
+
+            //}
         }
 
         private void lbx_Orders_TargetUpdated(object sender, DataTransferEventArgs e)
