@@ -27,20 +27,21 @@ namespace Methodical_group12
         public int NumberOfContracts { set; get; }
         List<Contract> contractList = new List<Contract>();
 
-        public string connStr = "server=159.89.117.198;user=DevOSHT;database=cmp;port=3306;password=Snodgr4ss!;";
+        public string marketPlaceConnStr = "server=159.89.117.198;user=DevOSHT;database=cmp;port=3306;password=Snodgr4ss!;";
 
 
         /**
         * FUNCTION      : public int InitiateContract()
         *
-        * DESCRIPTION   : This function will generate a Contract Object that will
-        *                 create a contract object.
+        * DESCRIPTION   : This function will be used to get infromation from the marketplace randomly
+        *                 since the marketplace refreshes every 10 seconds it will grab a random row
+        *                 and concanate it into one string
         * 
         * PARAMETERS    : NONE
         *
         * RETURNS       : Contract
         */
-        public string InitiateContract()
+        public string GetMarketPlaceInfo()
         {
             string tmpStr = "";
             int tmpQuantity;
@@ -49,7 +50,7 @@ namespace Methodical_group12
             int tmpJobType;
             int tmpVanType;
             string name = "";
-            MySqlConnection conn = new MySqlConnection(connStr);
+            MySqlConnection conn = new MySqlConnection(marketPlaceConnStr);
 
             if(conn == null)
             {
@@ -217,12 +218,11 @@ namespace Methodical_group12
         private void btn_InitiateContract_Click(object sender, RoutedEventArgs e)
         {
             //this method will allow Buyers to select a contract from the marketplace and will place an order with that 'customer'.
-            ContractStr = buyer.InitiateContract();
-            buyer.connStr = "server=localhost;user=root;database=omnicorp;port=3306;password=C4kd-s3d3-#ws090;";
-            InsertToContracts(ContractStr, buyer.connStr);
-        } 
-
-        string InsertToContracts (string data, string connStr)
+            ContractStr = buyer.GetMarketPlaceInfo();
+            string retStr = InsertToContracts(ContractStr, buyer.marketPlaceConnStr);
+        }
+       
+        string InsertToContracts(string data, string connStr)
         {
             string returnStr = "";
             string[] parsedData;
@@ -239,7 +239,7 @@ namespace Methodical_group12
             try
             {
                 MySqlCommand cmd = conn.CreateCommand();
-                cmd.CommandText = "Insert INTO contracts (ClientName,Quantity,Origin,Destination,Job_Type) values('" + parsedData[0] + "','" + parsedData[1] + "','" + parsedData[2] + "','" + parsedData[3] + "','" + parsedData[4] +"')";
+                cmd.CommandText = "Insert INTO contracts (ClientName,Quantity,Origin,Destination,Job_Type) values('" + parsedData[0] + "','" + parsedData[1] + "','" + parsedData[2] + "','" + parsedData[3] + "','" + parsedData[4] + "')";
                 conn.Open();
                 try
                 {
@@ -248,7 +248,7 @@ namespace Methodical_group12
                 }
                 catch (Exception e)
                 {
-                    returnStr = "There has been an error trying to insert the contract. " + e.Message; 
+                    returnStr = "There has been an error trying to insert the contract. " + e.Message;
                 }
             }
             catch (Exception msg)
@@ -258,5 +258,27 @@ namespace Methodical_group12
 
             return returnStr;
         }
+
+        private void btn_InitiateOrder_Click(object sender, RoutedEventArgs e)
+        {
+            string RandomRow = buyer.GetMarketPlaceInfo();
+            string retStr = CreateOrder(RandomRow, buyer.connStr);
+        }
+
+        string CreateOrder(string data, string connStr)
+        {
+            string returnStr = "";
+            string[] parsedData;
+            char[] unwanteChar = { ',' };
+            parsedData = data.Split(unwanteChar, StringSplitOptions.RemoveEmptyEntries);
+
+            return returnStr;
+        }
+
+        
     }
+
+
 }
+
+

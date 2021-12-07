@@ -50,7 +50,7 @@ namespace Methodical_group12
                 this.Close();
 
             }
-            else if (user == "bSally" && pass == "5678")
+            else if (user == "bSally" && pass == "1")
             {
                 Buyer buyerWindow = new Buyer();
                 buyerWindow.Show();
