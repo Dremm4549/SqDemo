@@ -195,6 +195,7 @@ namespace Methodical_group12
             //this method will allow Buyers to select a contract from the marketplace and will place an order with that 'customer'.
             ContractStr = buyer.GetMarketPlaceInfo();
             string retStr = InsertToContracts(ContractStr, buyer.marketPlaceConnStr);
+
         }
        
         string InsertToContracts(string data, string connStr)
@@ -203,8 +204,7 @@ namespace Methodical_group12
             string[] parsedData;
             char[] unwanteChar = { ',' };
             parsedData = data.Split(unwanteChar, StringSplitOptions.RemoveEmptyEntries);
-
-            MySqlConnection conn = new MySqlConnection(connStr);
+            MySqlConnection conn = new MySqlConnection(buyer.econnStr);
 
             if (conn == null)
             {
@@ -235,11 +235,13 @@ namespace Methodical_group12
         }
 
         private void btn_InitiateOrder_Click(object sender, RoutedEventArgs e)
-        {
-            string dateOfOrder = "";
-            string estimatedDeliveryDate = "";
-            string RandomRow = buyer.GetMarketPlaceInfo();
-            string retStr = CreateOrder(RandomRow, buyer.connStr, dateOfOrder, estimatedDeliveryDate);
+        {           
+            lbl_StartDate.Visibility = Visibility.Visible;
+            lbl_EndDate.Visibility = Visibility.Visible;
+            txb_StartDate.Visibility = Visibility.Visible;
+            txb_EndDate.Visibility = Visibility.Visible;
+            btn_ConfirmOrder.Visibility = Visibility.Visible; 
+            
         }
 
         string CreateOrder(string data, string connStr, string startDate, string endDate)
@@ -259,7 +261,7 @@ namespace Methodical_group12
             try
             {
                 MySqlCommand cmd = conn.CreateCommand();
-                cmd.CommandText = "Insert INTO orders (ClientName,Quantity,Origin,Destination,DateOfOrder,estimatedDeliveryDate,) values('" + parsedData[0] + "','" + parsedData[1] + "','" + parsedData[3] + "','" + parsedData[4] + "','" + startDate + "','" + endDate +  "')";
+                cmd.CommandText = "Insert INTO orders (ClientName,Quantity,Origin,Destination,DateOfOrder,estimatedDeliveryDate) values('" + parsedData[0] + "','" + parsedData[1] + "','" + parsedData[3] + "','" + parsedData[4] + "','" + startDate + "','" + endDate +  "')";
                 conn.Open();
                 try
                 {
@@ -280,7 +282,13 @@ namespace Methodical_group12
             return returnStr;
         }
 
-        
+        private void btn_Confirm_Order_Click(object sender, RoutedEventArgs e)
+        {
+            string tmpStartDate = txb_StartDate.Text;
+            string tmpEndDate = txb_EndDate.Text;
+            string RandomRow = buyer.GetMarketPlaceInfo();
+            string retStr = CreateOrder(RandomRow, buyer.econnStr, tmpStartDate, tmpEndDate);
+        }
     }
 
 

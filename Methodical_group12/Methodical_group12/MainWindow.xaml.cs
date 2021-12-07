@@ -37,8 +37,6 @@ namespace Methodical_group12
             string password = psb_password.Password.ToString();
             string userID = User.Text;
             SignIn(userID, password);
-            
-
         }
 
         void SignIn(string user, string pass)
