@@ -152,6 +152,7 @@ namespace Methodical_group12
         {
             //refresh list of orders
             //ensure that all aspects of order are properly set and mark for follow-up
+            lbx_Orders.Items.Clear();
             string orders = GetInactiveOrders(newPlanner.OmniCorpStr);
             string commandReturn = orders.Remove(orders.IndexOf(":"));
             
@@ -163,6 +164,7 @@ namespace Methodical_group12
                 {
                     clientInfo = order.orderID + "," + order.ClientName + "," + order.OrderStatus;
                     lbx_Orders.Items.Add(clientInfo);
+                    
                 }
 
             }
@@ -235,7 +237,6 @@ namespace Methodical_group12
                         while (reader.Read())
                         {
                             // get location from relevant order.
-
                             //take info from contract table.
                             tmpClientName = reader.GetString("ClientName").ToString();
                             tmpOrderID = reader.GetInt32("OrderNumber");
