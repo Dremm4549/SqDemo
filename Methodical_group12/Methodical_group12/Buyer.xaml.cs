@@ -188,6 +188,9 @@ namespace Methodical_group12
         public Buyer()
         {
             InitializeComponent();
+
+            // TODO DISPLAY ALL Customers
+            // GENERATE A LOG FILE FOR INVOICE
         }
 
         private void btn_InitiateContract_Click(object sender, RoutedEventArgs e)
@@ -240,8 +243,7 @@ namespace Methodical_group12
             lbl_EndDate.Visibility = Visibility.Visible;
             txb_StartDate.Visibility = Visibility.Visible;
             txb_EndDate.Visibility = Visibility.Visible;
-            btn_ConfirmOrder.Visibility = Visibility.Visible; 
-            
+            btn_ConfirmOrder.Visibility = Visibility.Visible;           
         }
 
         string CreateOrder(string data, string connStr, string startDate, string endDate)
