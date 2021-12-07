@@ -29,8 +29,7 @@ namespace Methodical_group12
 
     public class PlannerObj : Employee
     {
-        public string ConnStr = "server=localhost;port=3306;user=root;password=C4kd-s3d3=#ws090;database=omnicorp;";
-        MySqlConnection newConnection = new MySqlConnection();
+        public string ConnStr = "server=localhost;port=3306;user=root;password=rootpass;database=omnicorp;";
         public int orderID { set; get; }
 
         string OrderDate;
@@ -101,10 +100,11 @@ namespace Methodical_group12
             }
             else
             {
+                MySqlConnection newConnection = new MySqlConnection(ConnStr);
                 MySqlCommand cmd = newConnection.CreateCommand();
 
                 //may need to specify ID for Contract.
-                cmd.CommandText = "SELECT * FROM cmp.orders;";
+                cmd.CommandText = "SELECT * FROM cmp.contracts;";
                 newConnection.Open();
 
                 using (var reader = cmd.ExecuteReader())
