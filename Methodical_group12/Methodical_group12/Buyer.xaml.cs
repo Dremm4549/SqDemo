@@ -124,31 +124,6 @@ namespace Methodical_group12
         }
 
         /**
-        * FUNCTION      : public Order InitiateNewOrder()
-        *
-        * DESCRIPTION   : Will create an object order. The buyer will be asked 
-        *                 to pass arguments based on what ever is needed to create an order
-        *                 
-        * PARAMETERS    : NONE
-        *
-        * RETURNS       : Order
-        */
-
-        public Order InitiateNewOrder()
-        {
-            // TODO: sql connects to the market place and will grab things like a client name quantity orgin,
-            // destination and the buyer will have to add things like date ordered was made and expected delivery
-            // date
-            // Similar to the contract we will choose a random row from the table 
-            // Once generated the buyer will have to pass certain details like the date the order was made
-            // It will be then added to the ordered database and the orders that employee has made will increase
-            Order oObj = new Order();
-            
-
-            return oObj;
-        }
-
-        /**
         * FUNCTION      : public int GetCompletedOrder()
         *
         * DESCRIPTION   : Will create an object order. The buyer will be asked 
@@ -255,22 +230,52 @@ namespace Methodical_group12
             {
                 returnStr = msg.Message;
             }
-
+            conn.Close();
             return returnStr;
         }
 
         private void btn_InitiateOrder_Click(object sender, RoutedEventArgs e)
         {
+            string dateOfOrder = "";
+            string estimatedDeliveryDate = "";
             string RandomRow = buyer.GetMarketPlaceInfo();
-            string retStr = CreateOrder(RandomRow, buyer.connStr);
+            string retStr = CreateOrder(RandomRow, buyer.connStr, dateOfOrder, estimatedDeliveryDate);
         }
 
-        string CreateOrder(string data, string connStr)
+        string CreateOrder(string data, string connStr, string startDate, string endDate)
         {
             string returnStr = "";
             string[] parsedData;
             char[] unwanteChar = { ',' };
             parsedData = data.Split(unwanteChar, StringSplitOptions.RemoveEmptyEntries);
+
+            MySqlConnection conn = new MySqlConnection(connStr);
+
+            if (conn == null)
+            {
+                //TODO Write an error Message
+            }
+
+            try
+            {
+                MySqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "Insert INTO orders (ClientName,Quantity,Origin,Destination,DateOfOrder,estimatedDeliveryDate,) values('" + parsedData[0] + "','" + parsedData[1] + "','" + parsedData[3] + "','" + parsedData[4] + "','" + startDate + "','" + endDate +  "')";
+                conn.Open();
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    returnStr = "You have successfully created a contract";
+                }
+                catch (Exception e)
+                {
+                    returnStr = "There has been an error trying to insert the contract. " + e.Message;
+                }
+            }
+            catch (Exception msg)
+            {
+                returnStr = msg.Message;
+            }
+            conn.Close();
 
             return returnStr;
         }
