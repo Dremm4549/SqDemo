@@ -40,11 +40,6 @@ namespace Methodical_group12
         string Status;
         int Quantity;
 
-        
-        
-
-        
-
         /**
         * FUNCTION      : public string SelectCarrier()
         *
@@ -103,26 +98,32 @@ namespace Methodical_group12
                 MySqlConnection newConnection = new MySqlConnection(ConnStr);
                 MySqlCommand cmd = newConnection.CreateCommand();
 
-                //may need to specify ID for Contract.
-                cmd.CommandText = "SELECT * FROM cmp.contracts;";
+                //get any contract that has a NULL status (inactive).
+                cmd.CommandText = "SELECT OrderID FROM omnicorp.orders WHERE OrderStatus is NULL;";
                 newConnection.Open();
 
                 using (var reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        //take info from contract table.
-                        orderID = reader.GetInt32("OrderNumber");
-                        OrderDate = reader.GetString("DateOfOrder");
-                        Origin = reader.GetString("Origin");
-                        ClientName = reader.GetString("ClientName");
-                        EstDeliveryDate = reader.GetString("estimatedDeliveryDate");
-                        Carrier = reader.GetString("Carrier");
-                        Status = reader.GetString("OrderStatus");
-                        Quantity = reader.GetInt32("Quantity");
+                        // get location from relevant order.
 
+                        //take info from contract table.
+                        //orderID = reader.GetInt32("OrderNumber");
+                        //OrderDate = reader.GetString("DateOfOrder");
+                        //Origin = reader.GetString("Origin");
+                        //ClientName = reader.GetString("ClientName");
+                        //EstDeliveryDate = reader.GetString("estimatedDeliveryDate");
+                        //Carrier = reader.GetString("Carrier");
+                        //Status = reader.GetString("OrderStatus");
+                        //Quantity = reader.GetInt32("Quantity");
                     }
+                    
                 }
+
+                // compare to contracts and their available locations (same method.)
+
+                // This will allow the drop-down list to be appended to.
             }
         }
 
@@ -162,7 +163,7 @@ namespace Methodical_group12
         private void btn_SelectCarrier_Click(object sender, RoutedEventArgs e)
         {
             //clicking the 'select Carrier' button will check the textbox for a valid input and assign carriers.
-            newPlanner.CarrierAssign(txb_carrier.Text);
+            
         }
 
         private void lbx_Orders_TargetUpdated(object sender, DataTransferEventArgs e)
