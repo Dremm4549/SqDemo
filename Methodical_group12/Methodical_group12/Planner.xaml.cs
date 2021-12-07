@@ -183,6 +183,10 @@ namespace Methodical_group12
             //  ordersList[0] = "Order is this | Status is this \n";
             // }
             //should show status screen with all active orders (listed) (orderStatus=active)
+
+            OrderSummary orderSummary = new OrderSummary();
+            orderSummary.Show();
+
         }
 
         private void btn_Trips_Click(object sender, RoutedEventArgs e)
