@@ -19,7 +19,10 @@ namespace Methodical_group12
         public string OrderStatus { set; get; }
         public string ClientName { set; get; }
         public string  Carrier { set; get; }
-
+        public string OrderDate { set; get; }
+        public string Origin { set; get; }
+        public string Destination { set; get; }
+        public string EstDeliveryDate { set; get; }
 
         /*
         * FUNCTION      : public string CurrentOrderStatus()
