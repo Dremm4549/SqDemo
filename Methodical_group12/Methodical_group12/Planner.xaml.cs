@@ -1,4 +1,15 @@
-﻿using MySql.Data.MySqlClient;
+﻿/*
+* FILE          : Planner.xaml.cs
+* PROJECT       : Seng2020 - milestone #4
+* PROGRAMMER    : Max Pateman & Michael Dremo & Robert Socannder
+* FIRST VERSION : 11/30/2021
+* DESCRIPTION   : This file represents the code behind for the admin.
+*                 Some functionalites that might go with it is altering files
+*                 or tables
+*              
+*/
+
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,16 +44,8 @@ namespace Methodical_group12
         public int NumOfContracts { set; get; }
         public int PlannerEmpID { set; get; }
 
-        //string OrderDate;
-        //string Origin;
-        //string ClientName;
-        //string EstDeliveryDate;
-        //string Carrier;
-        //string Status;
-        //int Quantity;
-
         /**
-        * FUNCTION      : public string SelectCarrier()
+        * FUNCTION      : public string CarrierAssign()
         *
         * DESCRIPTION   : Allow the planner to select carries for the order
         *                 
@@ -71,11 +74,11 @@ namespace Methodical_group12
         * RETURNS       : NONE
         */
 
-        public int SimulateTime()
+        public string SimulateTime()
         {
-            int tmpSimulatedTime = 0;
+            string retStr = "";
 
-            return tmpSimulatedTime;
+            return retStr;
         }
 
         /**
@@ -116,7 +119,7 @@ namespace Methodical_group12
                 }
                 catch (Exception e)
                 {
-                
+                    
                 }
             }
         }
@@ -172,26 +175,21 @@ namespace Methodical_group12
                 }
 
             }
+            else
+            {
+                MessageBox.Show(commandReturn);
+            }
 
         }
 
         private void btn_SelectCarrier_Click(object sender, RoutedEventArgs e)
         {
-            //clicking the 'select Carrier' button will check the textbox for a valid input and assign carriers.
-            //if ()
-            //{
-
-            //} else
-            //{
-
-            //}
+            
         }
 
         private void lbx_Orders_TargetUpdated(object sender, DataTransferEventArgs e)
         {
             //dropdown box will update when an initiated order has been chosen. 
-
-
             cbx_CarrierSelect.Items.Add("carrier");
 
         }

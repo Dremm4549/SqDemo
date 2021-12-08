@@ -1,4 +1,15 @@
-﻿using System;
+﻿/*
+* FILE          : Admin.xaml.cs
+* PROJECT       : Seng2020 - milestone #4
+* PROGRAMMER    : Max Pateman & Michael Dremo & Robert Socannder
+* FIRST VERSION : 11/30/2021
+* DESCRIPTION   : This file represents the code behind for the admin.
+*                 Some functionalites that might go with it is altering files
+*                 or tables
+*              
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,8 +23,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MySqlConnector;
-using System.IO;
 using System.Net;
+using System.IO;
 
 namespace Methodical_group12
 {
@@ -31,7 +42,8 @@ namespace Methodical_group12
     public class AdminObj : Employee
     {
         public string SecurityKey { set; get; }
-        string TMSDataBaseConnectionFilepath = @"ConnInfo.txt";
+        string TMSDataBaseIpAndPort = @"C:\Users\Michael\Desktop\sqproject\SqDemo\Methodical_group12\ConfigFiles\ConnInfo.txt";
+        public string TMSconfigPath = @"C:\Users\Michael\Desktop\sqproject\SqDemo\Methodical_group12\ConfigFiles";
 
         /**
         * FUNCTION      : public string GetLogFiles(string selectedFile)
@@ -63,7 +75,7 @@ namespace Methodical_group12
             try
             {
                 //Read the text inside the conneciton file 
-                tmpStr = File.ReadAllText(TMSDataBaseConnectionFilepath);
+                tmpStr = File.ReadAllText(TMSDataBaseIpAndPort);
                 char[] unwatedChar = { '\n', ':','\r' };
                 string[] parsedData = tmpStr.Split(unwatedChar, StringSplitOptions.RemoveEmptyEntries);
 
@@ -97,6 +109,8 @@ namespace Methodical_group12
             
         }
 
+        
+
         /**
         * FUNCTION      : public string GetLogFiles(string selectedFile)
         *
@@ -111,7 +125,7 @@ namespace Methodical_group12
         {
             //Read the text inside the conneciton file 
             string tmpStr;
-            tmpStr = File.ReadAllText(TMSDataBaseConnectionFilepath);
+            tmpStr = File.ReadAllText(TMSDataBaseIpAndPort);
             char[] unwatedChar = { '\n', ':', '\r' };
             string[] parsedData = tmpStr.Split(unwatedChar, StringSplitOptions.RemoveEmptyEntries);
             string error;
@@ -128,14 +142,14 @@ namespace Methodical_group12
                     tmpStr += ip + "\r\n" + "Port:" + port;                   
                     try
                     {
-                        File.WriteAllText(TMSDataBaseConnectionFilepath, tmpStr);
+                        File.WriteAllText(TMSDataBaseIpAndPort, tmpStr);
                     }
                     catch(IOException io)
                     {
                         //TODO Alert user of IO Message
                         error = io.Message;
                     }              
-                }
+               }
             }
             catch (FormatException fe)
             {
@@ -148,20 +162,112 @@ namespace Methodical_group12
 
     public partial class Admin : Window
     {    
+        AdminObj ao = new AdminObj();
         public Admin()
         {
             
             InitializeComponent();
+            LoadDropDown(ao.TMSconfigPath);
         }
 
-        private void btn_OpenLog_Click(object sender, RoutedEventArgs e)
+        /**
+        * FUNCTION      :  public void LoadDropDown(string path)
+        *
+        * DESCRIPTION   : This function will populate all files inside the config file within the
+        *                 the tms system
+        *                 
+        * PARAMETERS    : string path
+        *
+        * RETURNS       : NONE
+        */
+
+        public void LoadDropDown(string path)
         {
+            if (Directory.Exists(path))
+            {
+                string[] fileNames = Directory.GetFiles(path);
+                foreach(string fn in fileNames)
+                {
+                    string tmp;
+                    tmp = System.IO.Path.GetFileName(fn);
+                    cmb_ConfigOptions.Items.Add(tmp);
+                }
+            }
+        }
+
+        /**
+        * FUNCTION      :  private void cmb_ConfigOptions_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        *
+        * DESCRIPTION   : This function will populate all files inside the config file within the
+        *                 the tms system and will be used later to load the files so the admin can alter the files
+        *                 
+        * PARAMETERS    : string path
+        *
+        * RETURNS       : NONE
+        */
+
+        private void cmb_ConfigOptions_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            hideandPort();
+            string selectedFile = cmb_ConfigOptions.SelectedItem.ToString();
+            if(selectedFile == "ConnInfo.txt")
+            {
+                showIpAndPort();
+            }
             
         }
 
-        private void txt_Directory_TextChanged(object sender, TextChangedEventArgs e)
-        {
+        /**
+        * FUNCTION      :  void hideandPort()
+        *
+        * DESCRIPTION   : Hides text boxes and lables 
+        *                 
+        * PARAMETERS    : string path
+        *
+        * RETURNS       : NONE
+        */
 
+        void hideandPort()
+        {
+            lbl_IP.Visibility = Visibility.Hidden;
+            lbl_Port.Visibility = Visibility.Hidden;
+            btn_Confirm_ipPort.Visibility = Visibility.Hidden;
+            txt_Port.Visibility = Visibility.Hidden;
+            txt_Ip.Visibility = Visibility.Hidden;
+        }
+
+        /**
+        * FUNCTION      :  void showIpAndPort()
+        *
+        * DESCRIPTION   : Hides text boxes and lables 
+        *                 
+        * PARAMETERS    : string path
+        *
+        * RETURNS       : NONE
+        */
+
+        void showIpAndPort()
+        {
+            
+            lbl_IP.Visibility = Visibility.Visible;
+            lbl_Port.Visibility = Visibility.Visible;
+            btn_Confirm_ipPort.Visibility = Visibility.Visible;
+            txt_Port.Visibility = Visibility.Visible;
+            txt_Ip.Visibility = Visibility.Visible;
+        }
+
+        /**
+        * FUNCTION      :  private void btn_Confirm_ipPort_Click(object sender, RoutedEventArgs e)
+        *
+        * DESCRIPTION   : Allows the admin to change the connection string file
+        *                 
+        * PARAMETERS    : string path
+        *
+        * RETURNS       : NONE
+        */
+        private void btn_Confirm_ipPort_Click(object sender, RoutedEventArgs e)
+        {
+            ao.AlterConnStr(txt_Ip.Text,txt_Port.Text);
         }
     }
 }

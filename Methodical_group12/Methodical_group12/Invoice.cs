@@ -1,4 +1,14 @@
-﻿using System;
+﻿/*
+* FILE          : Invoice.cs
+* PROJECT       : Seng2020 - milestone #4
+* PROGRAMMER    : Max Pateman & Michael Dremo & Robert Socannder
+* FIRST VERSION : 11/30/2021
+* DESCRIPTION   : The invoice file is to model attributes that a invoice might be constructed of
+*                 when creating one into a log file.
+*              
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
