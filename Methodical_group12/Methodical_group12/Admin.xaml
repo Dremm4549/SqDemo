@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Methodical_group12"
         mc:Ignorable="d"
-        Title="Admin" Height="537.803" Width="862.07">
+        Title="Admin" Height="537.803" Width="862.07" ResizeMode="NoResize">
     <Grid Margin="0,0,4,0" Height="562" VerticalAlignment="Top">
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">

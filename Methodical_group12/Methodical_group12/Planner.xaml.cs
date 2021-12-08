@@ -3,9 +3,9 @@
 * PROJECT       : Seng2020 - milestone #4
 * PROGRAMMER    : Max Pateman & Michael Dremo & Robert Socannder
 * FIRST VERSION : 11/30/2021
-* DESCRIPTION   : This file represents the code behind for the admin.
-*                 Some functionalites that might go with it is altering files
-*                 or tables
+* DESCRIPTION   : The planner file will allow functionality for the user to change the status 
+*                 of orders increment the current time of the order wether to compare if it has met its
+*                 expected delivery date if so it will be marked as completed. 
 *              
 */
 
