@@ -156,7 +156,7 @@ namespace Methodical_group12
 
         private void btn_OpenLog_Click(object sender, RoutedEventArgs e)
         {
-            
+            txt_Log.Text = File.ReadAllText("C:\\Test\\LogForM4.txt");
         }
 
         private void txt_Directory_TextChanged(object sender, TextChangedEventArgs e)

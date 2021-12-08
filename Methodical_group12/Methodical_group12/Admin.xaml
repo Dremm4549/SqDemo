@@ -48,8 +48,15 @@
                 </LinearGradientBrush>
             </Label.Foreground>
         </Label>
-        <ComboBox x:Name="cmb_ConfigOptions" Grid.Column="1" HorizontalAlignment="Left" Margin="23.8,47,0,0" Grid.Row="5" VerticalAlignment="Top" Width="200" Height="34" Grid.RowSpan="3" IsEnabled="True" Background="#FF2B486A" Foreground="White" FontSize="20"/>
-        <ComboBox x:Name="cmb_ChooseTMSData" Grid.Column="1" HorizontalAlignment="Left" Margin="23.8,27.4,0,0" Grid.Row="9" VerticalAlignment="Top" Width="190" Height="34" Grid.RowSpan="2" IsEnabled="True" Background="#FF2C4C71" Foreground="White" FontSize="20" RenderTransformOrigin="0.089,0.638"/>
+        <ComboBox x:Name="cmb_ConfigOptions" Grid.Column="1" HorizontalAlignment="Left" Margin="23.8,47,0,0" Grid.Row="5" VerticalAlignment="Top" Width="200" Height="34" Grid.RowSpan="3" IsEnabled="True" Background="#FF2B486A"  FontSize="20">
+        <ComboBoxItem Content="Log Files Directories"/>
+           <ComboBoxItem Content="Target IP and Ports"/>
+        </ComboBox>
+        <ComboBox x:Name="cmb_ChooseTMSData" Grid.Column="1" HorizontalAlignment="Left" Margin="23.8,27.4,0,0" Grid.Row="9" VerticalAlignment="Top" Width="190" Height="34" Grid.RowSpan="2" IsEnabled="True" Background="#FF2C4C71"  FontSize="20" RenderTransformOrigin="0.089,0.638">
+            <ComboBoxItem Content="Rate/Fee Tables"/>
+            <ComboBoxItem Content="Carrier Data"/>
+            <ComboBoxItem Content="Route Table"/>
+        </ComboBox>
         <Button x:Name="btn_OpenLog" Content="Open Log" Grid.Column="1" HorizontalAlignment="Left" Margin="23.8,0.4,0,0" Grid.Row="3" VerticalAlignment="Top" Width="190" Height="34" Background="#FF2B486A" Foreground="White" FontSize="20" Click="btn_OpenLog_Click"/>
         <Button x:Name="btn_BackUpJob" Content="Get Back Up Job" Grid.Column="1" HorizontalAlignment="Left" Margin="23.8,23,0,0" Grid.Row="11" VerticalAlignment="Top" Width="190" Height="34" Grid.RowSpan="2" Background="#FF2B486A" Foreground="White" FontSize="17"/>
         <TextBox x:Name="txt_Log" Grid.ColumnSpan="4" Grid.Column="3" HorizontalAlignment="Left" Height="147" Margin="10,35,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="541" Grid.RowSpan="5" Background="#FF2B486A" Foreground="White"/>
